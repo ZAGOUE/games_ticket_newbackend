@@ -1,0 +1,100 @@
+### Authentication (Login)
+POST http://127.0.0.1:8000/api/login
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "User@1234"
+}
+
+### Create a new user (Admin only)
+POST http://127.0.0.1:8000/api/users
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+  "email": "newuser@example.com",
+  "password": "NewUser@1234",
+  "first_name": "New",
+  "last_name": "User"
+}
+
+### Get all users (Admin only)
+GET http://127.0.0.1:8000/api/users
+Authorization: Bearer {{TOKEN}}
+
+### Get user by ID (Admin only)
+GET http://127.0.0.1:8000/api/users/1
+Authorization: Bearer {{TOKEN}}
+
+### Update a user (Admin only)
+PUT http://127.0.0.1:8000/api/users/1
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+  "first_name": "Updated",
+  "last_name": "User"
+}
+
+### Delete a user (Admin only)
+DELETE http://127.0.0.1:8000/api/users/1
+Authorization: Bearer {{TOKEN}}
+
+### Create a new offer (Admin only)
+POST http://127.0.0.1:8000/api/offers
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+  "name": "Billet Platine",
+  "price": 500,
+  "max_people": 200
+}
+
+### Get all offers (Public)
+GET http://127.0.0.1:8000/api/offers
+
+### Get offer by ID (Public)
+GET http://127.0.0.1:8000/api/offers/1
+
+### Update an offer (Admin only)
+PUT http://127.0.0.1:8000/api/offers/1
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+  "name": "Billet Diamant",
+  "price": 1000,
+  "max_people": 100
+}
+
+### Delete an offer (Admin only)
+DELETE http://127.0.0.1:8000/api/offers/1
+Authorization: Bearer {{TOKEN}}
+
+### Create a ticket order (User only)
+POST http://127.0.0.1:8000/api/ticket-orders
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+  "offer_id": 1,
+  "quantity": 2
+}
+
+### Get all ticket orders (Admin only)
+GET http://127.0.0.1:8000/api/ticket-orders
+Authorization: Bearer {{TOKEN}}
+
+### Get ticket order by ID (User only)
+GET http://127.0.0.1:8000/api/ticket-orders/1
+Authorization: Bearer {{TOKEN}}
+
+### Pay for a ticket order (User only)
+POST http://127.0.0.1:8000/api/ticket-orders/1/pay
+Authorization: Bearer {{TOKEN}}
+
+### Verify a ticket order (Controller only)
+GET http://127.0.0.1:8000/api/ticket-orders/verify/{order_key}
+Authorization: Bearer {{TOKEN}}
